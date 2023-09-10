@@ -23,11 +23,10 @@ class MergeEventArranger<T extends Object?> extends EventArranger<T> {
     for (final event in events) {
       if (event.startTime == null ||
           event.endTime == null ||
-          (event.endTime != null &&
-              event.startTime != null &&
-              event.endTime!.getTotalMinutes <=
-                  event.startTime!.getTotalMinutes)) {
-        if (!(event.endTime!.getTotalMinutes == 0 &&
+          event.endTime!.getTotalMinutes <= event.startTime!.getTotalMinutes) {
+        if (!(event.endTime != null &&
+            event.startTime != null &&
+            event.endTime!.getTotalMinutes == 0 &&
             event.startTime!.getTotalMinutes > 0)) {
           assert(() {
             try {
